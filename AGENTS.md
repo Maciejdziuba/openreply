@@ -13,7 +13,7 @@ Fork of `diwenne/openreply` (`upstream` remote). Instagram comment-to-DM for @ma
 - The worker uses Railway's internal `${{Postgres.DATABASE_URL}}` and `${{Redis.REDIS_URL}}`. Vercel uses the public TCP proxies (`*.proxy.rlwy.net`).
 - `.env.local` (gitignored) holds every secret plus the public DB/Redis URLs. `ENCRYPTION_KEY` must match on Vercel and Railway.
 - Login: Resend magic links from `login@editingevolution.com` (DNS on Cloudflare). `ALLOWED_EMAILS` limits sign-in to Maciej's two addresses.
-- Instagram: own Meta app (direct Meta, no Zernio). Callback `/api/instagram/callback`, webhook `/api/webhook`.
+- Instagram: connected through Zernio (ADR 0002); the key is saved encrypted in Settings. Own Meta app is the fallback.
 - Health: `curl https://maciej-openreply.vercel.app/api/health` (expects `status: ok`, `worker.healthy: true`).
 - Updates: `git fetch upstream && git merge upstream/main`, then deploy both.
 - `room-cli secret request` writes values single-quoted in `.env.local`. Strip the quotes before copying a value to Vercel or Railway: a quoted `RESEND_API_KEY` broke login with "API key is invalid" (2026-11-08). Vercel marks env vars sensitive, so `vercel env pull` shows placeholders, not values.

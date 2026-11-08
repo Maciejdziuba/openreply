@@ -2,6 +2,8 @@
 
 Date: 2026-11-08
 
+Status: the Instagram connection part is updated by ADR 0002 (Zernio instead of our own Meta app).
+
 ## Context
 
 Maciej wants Instagram comment-to-DM (keyword in a Reel comment sends a link). ManyChat's free plan now allows about 25 contacts, and paid plans grow with every contact ($17 to $199+ a month). ManyChat does not support X.
