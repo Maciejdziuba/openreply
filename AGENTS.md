@@ -16,3 +16,4 @@ Fork of `diwenne/openreply` (`upstream` remote). Instagram comment-to-DM for @ma
 - Instagram: own Meta app (direct Meta, no Zernio). Callback `/api/instagram/callback`, webhook `/api/webhook`.
 - Health: `curl https://maciej-openreply.vercel.app/api/health` (expects `status: ok`, `worker.healthy: true`).
 - Updates: `git fetch upstream && git merge upstream/main`, then deploy both.
+- `room-cli secret request` writes values single-quoted in `.env.local`. Strip the quotes before copying a value to Vercel or Railway: a quoted `RESEND_API_KEY` broke login with "API key is invalid" (2026-11-08). Vercel marks env vars sensitive, so `vercel env pull` shows placeholders, not values.
