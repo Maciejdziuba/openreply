@@ -17,3 +17,4 @@ Fork of `diwenne/openreply` (`upstream` remote). Instagram comment-to-DM for @ma
 - Health: `curl https://maciej-openreply.vercel.app/api/health` (expects `status: ok`, `worker.healthy: true`).
 - Updates: `git fetch upstream && git merge upstream/main`, then deploy both.
 - `room-cli secret request` writes values single-quoted in `.env.local`. Strip the quotes before copying a value to Vercel or Railway: a quoted `RESEND_API_KEY` broke login with "API key is invalid" (2026-11-08). Vercel marks env vars sensitive, so `vercel env pull` shows placeholders, not values.
+- Reel campaigns: `scripts/sync-reels.ts` (hourly via `scripts/sync-reels.sh`, Cloudroom loop `auto_v0p9ncez0ra`, project Content) reads `~/Developer/Content/shorts/*/post.json` (`instagram_keyword`, `dm_link`) and creates one follow-gated campaign per new Reel. Daily health check: `docs/daily-check.md` (loop `auto_baz4dgevf1o`).
